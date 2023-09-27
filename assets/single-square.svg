@@ -1,0 +1,5 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.25" y="0.25" width="49.5" height="49.5" stroke="#CACACA" stroke-width="0.5"/>
+<path d="M49.6667 0.333313L0.333374 49.6666" stroke="#CACACA" stroke-width="0.5" stroke-dasharray="3 3"/>
+<path d="M49.6667 49.6666L0.333357 0.333311" stroke="#CACACA" stroke-width="0.5" stroke-dasharray="3 3"/>
+</svg>

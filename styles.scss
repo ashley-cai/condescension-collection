@@ -1,0 +1,126 @@
+
+@font-face {
+    font-family: "Akkurat-Mono";
+    src: url("assets/fonts/Akkurat-Mono.otf") format('otf');
+    font-weight: normal;
+}
+
+:root {
+    --red: #F40000;
+    --blue: #243AFF;
+    --light-gray: #CACACA;
+    --medium-gray: #969696;
+  }
+
+html {
+    background-image: url("assets/single-square.svg");
+    background-repeat: repeat;
+}
+
+.intro-container {
+    width: 36vw;
+    margin: auto;
+}
+
+.title{
+    padding-top: 8vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 36vw;
+}
+
+.intro-text {
+    padding-left: 1vw;
+    padding-top: 4vh;
+    font-family: "Akkurat-Mono";
+    width: auto;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 10vw;
+    height: 6vh;
+    margin-top: 4vh;
+    border-radius: 4px;
+    text-align: center;
+    background-color: var(--red);
+    font-family: "Akkurat-Mono";
+    color: white;
+    font-size: 1.6em;
+}
+
+
+.game-page {
+    height: 100vh;
+    margin-top: 24vh;
+    background-color: white;
+}
+
+.game-container{
+    width: 40vw;
+    padding-top: 12vh;
+    margin: auto;
+}
+
+.game-header-container {
+    padding-bottom: 12vh;
+}
+
+.game-header-row {
+    display: flex;
+    flex-direction: row;
+    font-family: "Akkurat-Mono";
+    justify-content: space-between;
+}
+
+.game-header-text{
+    font-size: 1vw;
+    color: var(--medium-gray);
+}
+
+
+.game-header-content{
+    font-size: 3vw;
+    color: var(--red);
+}
+
+.mistakes {
+    text-align: right;
+}
+
+#reference-sentence {
+    margin: auto;
+    font-family: "Akkurat-Mono";
+    font-size: 2vw;
+    text-align: center;
+    padding-bottom: 8vh;
+}
+
+.letter
+{
+    width: 3.5vw;
+    height: 3.5vw;
+    border: 1px solid var(--light-gray);
+    font-family: "Akkurat-Mono";
+    font-size: 2vw;
+    text-align: center;
+    text-transform: uppercase;
+    caret-color: transparent;
+    margin: .75vh;
+}
+
+input:focus { 
+    outline: none !important;
+    border: none;
+    -webkit-box-shadow:inset 0px 0px 0px 2px var(--blue);
+    -moz-box-shadow:inset 0px 0px 0px 2px var(--blue);
+    box-shadow:inset 0px 0px 0px 2px var(--blue);
+
+}

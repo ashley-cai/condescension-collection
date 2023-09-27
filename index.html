@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">    
+  </head>
+  <body>
+    
+    <script>var exports = {};</script>
+    <script src="index.js"></script>
+
+    <div class="intro-container">
+        <img class="title" src = "assets/title.svg"/>
+        <div class="intro-text">
+            Type these 15 common English phrases to test your typing! No backspaces, and you will be moved to the next phrase when the game thinks you’re done.
+        </div>
+        <div class="start-button" onclick="javascript:initializePhrase()">
+            START
+        </div>
+    </div>
+
+    <div class="game-page">
+      <div class="game-container">
+        <div class="game-header-container">
+          <div class="game-header-row">
+              <div class="game-header-text">TIME</div>
+              <div class="game-header-text" id="count-tracker"></div>
+              <div class="game-header-text">MISTAKES</div>
+          </div>
+          <div class="game-header-row"> 
+            <div class="game-header-content">0:00</div>
+            <div class="game-header-content mistakes">0</div>
+          </div>
+        </div>
+        <div id="reference-sentence">
+        </div>
+        <div id="type-sentence">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
