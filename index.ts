@@ -256,7 +256,7 @@ const wpmInterval = setInterval(
 function endGame() {
 
     let referenceSentence = document.getElementById("reference-sentence")!
-    referenceSentence.innerHTML = `Your final WPM was: <i>` + wpm + `WPM</i>. <br> The average adult typing speed is <i>50 WPM.</i><br>`;
+    referenceSentence.innerHTML = `Your final WPM was: <i>` + wpm + ` WPM</i>. <br> The average adult typing speed is <i>50 WPM.</i><br>`;
     if (wpm < 50) {
         referenceSentence.innerHTML += `<br> If you didn't realize, that means you are <i>` + (50 - wpm) + ` WPM</i> slower than average.`
     }
@@ -267,9 +267,24 @@ function endGame() {
     let restartButton = document.getElementById("restart-button")!
     restartButton.style.display = "flex"
 
-
     clearInterval(wpmInterval)
 
+}
+
+function homePage() {
+    let intro = document.getElementById("intro-page")
+    intro!.style.display = "block" 
+    let game = document.getElementById("game-page")
+    game!.style.display = "none"
+    let berateContainer = document.getElementById("berate-container");
+    berateContainer?.innerHTML = ""
+    let typeSentence = document.getElementById("type-sentence")!
+    typeSentence.style.display = "block"
+    countTracker = 0;
+    timeTracker = 0;
+    mistakeTracker = 0;
+
+    letterCounter = 0;
 }
 
 window.onload = function() {

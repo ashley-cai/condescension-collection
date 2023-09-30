@@ -28,11 +28,17 @@
 }
 
 .intro-container {
+    @media (orientation: portrait) {
+        width: 80vw
+      }
     width: 36vw;
     margin: auto;
 }
 
 .title{
+    @media (orientation: portrait) {
+        width: 80vw
+      }
     padding-top: 8vh;
     display: block;
     margin-left: auto;
@@ -41,6 +47,10 @@
 }
 
 .intro-text {
+    @media (orientation: portrait) {
+        width: 80vw;
+        font-size: 2em;
+      }
     padding-left: 1vw;
     padding-top: 4vh;
     font-family: "Akkurat-Mono";
@@ -51,7 +61,6 @@
     display: flex;
 }
 
-
 .game-page {
     display: none;
     height: 100vh;
@@ -59,6 +68,11 @@
 }
 
 .game-container{
+    @media (orientation: portrait) {
+        width: 70vw;
+        padding-top: 6vh;
+
+      }
     width: 40vw;
     padding-top: 12vh;
     margin-left: auto;
@@ -67,7 +81,10 @@
 }
 
 .game-header-container {
-    padding-bottom: 12vh;
+    @media (orientation: portrait) {
+        padding-bottom: 6vh;
+      }
+    padding-bottom: 8vh;
 }
 
 .game-header-row {
@@ -78,12 +95,18 @@
 }
 
 .game-header-text{
+    @media (orientation: portrait) {
+        font-size: 2em;
+      }
     font-size: 1vw;
     color: var(--medium-gray);
 }
 
 
 .game-header-content{
+    @media (orientation: portrait) {
+        font-size: 4em;
+      }
     font-size: 4em;
     color: var(--red);
 }
@@ -93,16 +116,27 @@
 }
 
 #reference-sentence {
+    @media (orientation: portrait) {
+        font-size: 2em;
+        padding-bottom: 4vh;
+        line-height: 2em;
+    }
     margin: auto;
     font-family: "Akkurat-Mono";
     font-size: 2vw;
     text-align: center;
-    padding-bottom: 8vh;
-    line-height: 2vw;
+    padding-bottom: 6vh;
+    line-height: 3vw;
 }
 
 .letter
 {
+    @media (orientation: portrait) {
+        width: 3em;
+        height: 3em;
+        font-size: 2em;
+        margin: .75vh;
+    }
     width: 3.5vw;
     height: 3.5vw;
     border: 1px solid var(--light-gray);
@@ -132,14 +166,16 @@ input:focus {
 }
 
 .berate {
+    @media (orientation: portrait) {
+        font-size: 2.5em;
+    }
     position: absolute;
     font-family: "Akkurat-Mono";
-    font-size: 2.5em;
+    font-size: 2em;
     color: var(--red);
 }
 
 .disappearingText {
-    pointer-events: all;
     transition: opacity 0.25s;
   }
   
@@ -153,10 +189,16 @@ input:focus {
 
 #restart-button {
     display: none;
-
+    position: relative;
+    z-index: 10;
 }
 
 .button {
+    @media (orientation: portrait) {
+        width: 40vw;
+        margin-top: 8vh;
+        font-size: 2em;
+      }
     justify-content: center;
     align-content: center;
     flex-direction: column;
@@ -176,6 +218,9 @@ input:focus {
 }
 
  i{
+    @media (orientation: portrait) {
+        font-size: 2.4em;
+    }
     font-family: "PP-Editorial";
     font-size: 1.6em;
   }
