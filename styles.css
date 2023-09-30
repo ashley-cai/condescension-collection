@@ -3,6 +3,11 @@
   src: url("assets/fonts/Akkurat-Mono.otf") format("otf");
   font-weight: normal;
 }
+@font-face {
+  font-family: "PP-Editorial";
+  src: url("assets/fonts/PPEditorialNew-Variable.ttf") format("ttf");
+  font-weight: normal;
+}
 :root {
   --red: #F40000;
   --blue: #243AFF;
@@ -10,7 +15,9 @@
   --medium-gray: #969696;
 }
 
-html {
+.intro-page {
+  width: 100vw;
+  height: 100vh;
   background-image: url("assets/single-square.svg");
   background-repeat: repeat;
 }
@@ -37,32 +44,19 @@ html {
 
 .start-button {
   display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10vw;
-  height: 6vh;
-  margin-top: 4vh;
-  border-radius: 4px;
-  text-align: center;
-  background-color: var(--red);
-  font-family: "Akkurat-Mono";
-  color: white;
-  font-size: 1.6em;
 }
 
 .game-page {
+  display: none;
   height: 100vh;
-  margin-top: 24vh;
   background-color: white;
 }
 
 .game-container {
   width: 40vw;
   padding-top: 12vh;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .game-header-container {
@@ -82,7 +76,7 @@ html {
 }
 
 .game-header-content {
-  font-size: 3vw;
+  font-size: 4em;
   color: var(--red);
 }
 
@@ -96,6 +90,7 @@ html {
   font-size: 2vw;
   text-align: center;
   padding-bottom: 8vh;
+  line-height: 2vw;
 }
 
 .letter {
@@ -116,6 +111,61 @@ input:focus {
   -webkit-box-shadow: inset 0px 0px 0px 2px var(--blue);
   -moz-box-shadow: inset 0px 0px 0px 2px var(--blue);
   box-shadow: inset 0px 0px 0px 2px var(--blue);
+}
+
+#berate-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  z-index: 0;
+}
+
+.berate {
+  position: absolute;
+  font-family: "Akkurat-Mono";
+  font-size: 2.5em;
+  color: var(--red);
+}
+
+.disappearingText {
+  pointer-events: all;
+  transition: opacity 0.25s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#restart-button {
+  display: none;
+}
+
+.button {
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vw;
+  height: 6vh;
+  margin-top: 4vh;
+  border-radius: 4px;
+  text-align: center;
+  background-color: var(--red);
+  font-family: "Akkurat-Mono";
+  color: white;
+  font-size: 1.6em;
+  cursor: pointer;
+}
+
+i {
+  font-family: "PP-Editorial";
+  font-size: 1.6em;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -23,15 +23,23 @@ let usedPhrases = [0];
 let wordCheckerInt = [];
 let wordCheckerWord = [];
 let wordCheckerLetter = [];
+let userTypedLetter = [];
 let countTracker = 0;
 let timeTracker = 0;
 let mistakeTracker = 0;
+let letterCounter = 0;
 //TODO: 
-//mess with key bindings
-//timer
-//mistake counter
 //start game
 //typing progress on the reference sentence
+//wpm calculator
+//mobile compatibility
+function startGame() {
+    let intro = document.getElementById("intro-page");
+    intro.style.display = "none";
+    let game = document.getElementById("game-page");
+    game.style.display = "block";
+    initializePhrase();
+}
 //function to pick a phrase and set up the text-boxes
 function initializePhrase() {
     //changes the count tracker
@@ -47,7 +55,33 @@ function initializePhrase() {
     usedPhrases.push(num);
     let phrase = phrases[num];
     let phraseLength = phrase.length;
-    //https://jsfiddle.net/fEEa7/
+    //initialize mistake arrays
+    //words
+    wordCheckerWord = phrase.match(/\w+|\s+|[^\s\w]+/g);
+    //letters
+    wordCheckerLetter = phrase.split('');
+    //numbers
+    wordCheckerInt = [];
+    let x = 0;
+    for (let i = 0; i < wordCheckerWord.length; i++) {
+        let tempWordArray = wordCheckerWord[i].split('').map(function (char) {
+            if (char != " ") {
+                return x;
+            }
+            else {
+                x++;
+            }
+        });
+        wordCheckerInt = wordCheckerInt.concat(tempWordArray);
+    }
+    //removing spaces from wordcheckerword
+    wordCheckerWord = wordCheckerWord.filter(function (x) {
+        if (x != " ") {
+            return x;
+        }
+    });
+    //reset user input
+    userTypedLetter = [];
     //picks reference sentence
     let referenceSentence = document.getElementById("reference-sentence");
     referenceSentence.innerHTML = phrase;
@@ -56,11 +90,31 @@ function initializePhrase() {
     typeSentence.innerHTML = "";
     for (let i = 1; i <= phraseLength; i++) {
         let x = i + 1;
-        typeSentence.innerHTML += "<input type='text' id='letter" + i + "' class='letter' maxlength='1' oninput=autotab(this,'letter" + x + "')>";
+        typeSentence.innerHTML += "<input type='text' id='" + i + "' class='letter' maxlength='1' oninput=typeCheck(this,'" + x + "')>";
     }
+    //mix keybindings based on how far they are in the game
+    mixKeyBindings(countTracker);
     //auto focus on the first text box
-    var input = document.getElementById('letter1');
+    var input = document.getElementById('1');
     input.focus();
+}
+function typeCheck(current, next) {
+    letterCounter++;
+    userTypedLetter = userTypedLetter.concat(current.value);
+    mistakeCheck(current);
+    autotab(current, next);
+}
+function mistakeCheck(current) {
+    let i = Number(current.id) - 1;
+    if (userTypedLetter[i].toUpperCase() != wordCheckerLetter[i]) {
+        mistakeTracker++;
+        letterCounter--;
+        if (wordCheckerLetter[i] != " ") {
+            berate(wordCheckerWord[wordCheckerInt[i]]);
+        }
+    }
+    let mistakes = document.getElementById("mistakes");
+    mistakes.innerHTML = mistakeTracker.toString();
 }
 function autotab(current, next) {
     if (current.getAttribute && current.value.length == current.getAttribute("maxlength")) {
@@ -69,9 +123,108 @@ function autotab(current, next) {
             document.getElementById(next).focus();
         }
         else {
-            initializePhrase();
+            if (countTracker < 15) {
+                initializePhrase();
+            }
+            else {
+                endGame();
+            }
         }
     }
+}
+//MESSING WITH KEYBINDINGS
+function mixKeyBindings(count) {
+    const inputElements = document.getElementsByClassName('letter'); //gets the text boxes for the current sentence
+    let mixedLetters = [" "];
+    let countMixedLetters = Math.floor((count * count) / 30);
+    let countUniqueLetters = [...new Set(wordCheckerLetter)].length;
+    if (countMixedLetters > countUniqueLetters - 1) {
+        countMixedLetters = countUniqueLetters - 1;
+    }
+    for (let i = 0; i < countMixedLetters; i++) {
+        let letter = getRandomLetterInSentence();
+        while (mixedLetters.includes(letter)) {
+            letter = getRandomLetterInSentence();
+        }
+        mixedLetters = mixedLetters.concat(letter);
+        //prevents typing of the letters
+        for (let inputElement of inputElements) {
+            inputElement.addEventListener('keydown', function (event) {
+                if (event.key === letter.toLowerCase() || event.key === letter.toUpperCase()) {
+                    event.preventDefault(); // Prevent the default 'a' character from being entered 
+                    inputElement.value += getRandomLetter(letter); // Append custom text 
+                    inputElement.dispatchEvent(new Event('input')); //simulates input to go to next textbox
+                }
+            });
+        }
+    }
+}
+//gets random letter from current sentence
+function getRandomLetterInSentence() {
+    return wordCheckerLetter[Math.floor(Math.random() * wordCheckerLetter.length)];
+}
+//gets random letter from alphabet
+function getRandomLetter(not) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'; //generates random letter
+    let randomLetter = not;
+    while (randomLetter == not) { //makes sure generated letter is not the provided letter
+        randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+    return randomLetter;
+}
+//VERBALLY BERATING
+function berate(wordMistake) {
+    let berateContainer = document.getElementById("berate-container");
+    let coords = getRandomCoordinatesOutsideDiv("game-container");
+    berateContainer === null || berateContainer === void 0 ? void 0 : berateContainer.innerHTML += ("<div class='disappearingText berate' onmouseover='vanish(this)' style='transform: translate(" + coords.x + "px," + coords.y + "px)'>" + wordMistake + "</div>");
+    setTimeout(function () {
+        coords = getRandomCoordinatesOutsideDiv("game-container");
+        berateContainer === null || berateContainer === void 0 ? void 0 : berateContainer.innerHTML += ("<div class='disappearingText berate' onmouseover='vanish(this)' style='transform: translate(" + coords.x + "px," + coords.y + "px)'>" + wordMistake + "???</div>");
+    }, 1000);
+}
+function getRandomCoordinatesOutsideDiv(divId) {
+    // Get the dimensions of the div
+    const div = document.getElementById(divId);
+    const divRect = div.getBoundingClientRect();
+    const divWidth = divRect.width;
+    const divHeight = divRect.height;
+    // Generate random coordinates
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+    // Check if the coordinates are outside the div
+    while (x > divRect.left &&
+        x < divRect.left + divWidth &&
+        y > divRect.top &&
+        y < divRect.top + divHeight) {
+        x = Math.random() * window.innerWidth;
+        y = Math.random() * window.innerHeight;
+    }
+    return { x, y };
+}
+function vanish(current) {
+    current.classList.remove('visible');
+    current.classList.add('hidden');
+}
+//WPM calculator
+let wpmElement = document.getElementById("wpm");
+let wpm = 0;
+const wpmInterval = setInterval(function () {
+    wpm = Math.floor((letterCounter / 5) * 20);
+    wpmElement === null || wpmElement === void 0 ? void 0 : wpmElement.innerHTML = wpm;
+    letterCounter = 0;
+}, 3000);
+//END GAME
+function endGame() {
+    let referenceSentence = document.getElementById("reference-sentence");
+    referenceSentence.innerHTML = `Your final WPM was: <i>` + wpm + `WPM</i>. <br> The average adult typing speed is <i>50 WPM.</i><br>`;
+    if (wpm < 50) {
+        referenceSentence.innerHTML += `<br> If you didn't realize, that means you are <i>` + (50 - wpm) + ` WPM</i> slower than average.`;
+    }
+    let typeSentence = document.getElementById("type-sentence");
+    typeSentence.style.display = "none";
+    let restartButton = document.getElementById("restart-button");
+    restartButton.style.display = "flex";
+    clearInterval(wpmInterval);
 }
 window.onload = function () {
     initializePhrase();

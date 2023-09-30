@@ -6,36 +6,44 @@
   <body>
     
     <script>var exports = {};</script>
-    <script src="index.js"></script>
 
-    <div class="intro-container">
-        <img class="title" src = "assets/title.svg"/>
-        <div class="intro-text">
-            Type these 15 common English phrases to test your typing! No backspaces, and you will be moved to the next phrase when the game thinks you’re done.
-        </div>
-        <div class="start-button" onclick="javascript:initializePhrase()">
-            START
-        </div>
+    <div class="intro-page" id="intro-page">
+      <div class="intro-container">
+          <img class="title" src = "assets/title.svg"/>
+          <div class="intro-text">
+              Type these 15 common English phrases to test your typing speed! No backspaces, and your WPM score will be factor in your accuracy. Good luck!
+          </div>
+          <div class="start-button button" onclick="javascript:startGame()">
+              START
+          </div>
+      </div>
     </div>
 
-    <div class="game-page">
-      <div class="game-container">
+    <div id="game-page" class="game-page">
+      <div id="berate-container">
+      </div>
+      <div class="game-container" id="game-container">
         <div class="game-header-container">
           <div class="game-header-row">
-              <div class="game-header-text">TIME</div>
+              <div class="game-header-text">WPM</div>
               <div class="game-header-text" id="count-tracker"></div>
               <div class="game-header-text">MISTAKES</div>
           </div>
           <div class="game-header-row"> 
-            <div class="game-header-content">0:00</div>
-            <div class="game-header-content mistakes">0</div>
+            <div id="wpm" class="game-header-content">0</div>
+            <div id="mistakes" class="game-header-content mistakes">0</div>
           </div>
         </div>
         <div id="reference-sentence">
         </div>
         <div id="type-sentence">
         </div>
+        <div id="restart-button" class="button" onclick="javascript:homePage()">
+          RESTART
+      </div>
       </div>
     </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
