@@ -257,7 +257,7 @@ function homePage() {
     letterCounter = 0;
     let mistakes = document.getElementById("mistakes");
     mistakes.innerHTML = mistakeTracker.toString();
-    wpmElement === null || wpmElement === void 0 ? void 0 : wpmElement.innerHTML = 0;
+    wpmElement.innerHTML = "0";
 }
 window.onload = function () {
     initializePhrase();

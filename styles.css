@@ -1,12 +1,20 @@
 @font-face {
   font-family: "Akkurat-Mono";
   src: url("assets/fonts/Akkurat-Mono.otf") format("otf");
-  font-weight: normal;
+  font-weight: 1 1000;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM-Mono";
+  src: url("assets/fonts/IBMPlexMono-Regular.ttf") format("otf");
+  font-weight: 1 1000;
+  font-style: normal;
 }
 @font-face {
   font-family: "PP-Editorial";
   src: url("assets/fonts/PPEditorialNew-Variable.ttf") format("ttf");
-  font-weight: normal;
+  font-weight: 1 1000;
+  font-style: normal;
 }
 :root {
   --red: #F40000;
@@ -48,7 +56,8 @@
 .intro-text {
   padding-left: 1vw;
   padding-top: 4vh;
-  font-family: "Akkurat-Mono";
+  font-weight: 600;
+  font-family: "Akkurat-Mono", "IBM-Mono", "Courier New", Courier, monospace;
   width: auto;
 }
 @media (orientation: portrait) {
@@ -93,7 +102,7 @@
 .game-header-row {
   display: flex;
   flex-direction: row;
-  font-family: "Akkurat-Mono";
+  font-family: "Akkurat-Mono", "IBM-Mono", "Courier New", Courier, monospace;
   justify-content: space-between;
 }
 
@@ -123,7 +132,7 @@
 
 #reference-sentence {
   margin: auto;
-  font-family: "Akkurat-Mono";
+  font-family: "Akkurat-Mono", "IBM-Mono", "Courier New", Courier, monospace;
   font-size: 2vw;
   text-align: center;
   padding-bottom: 6vh;
@@ -142,7 +151,7 @@
   width: 3.5vw;
   height: 3.5vw;
   border: 1px solid var(--light-gray);
-  font-family: "Akkurat-Mono";
+  font-family: "Akkurat-Mono", "IBM-Mono", "Courier New", Courier, monospace;
   font-size: 2vw;
   text-align: center;
   text-transform: uppercase;
@@ -161,6 +170,7 @@
 input:focus {
   outline: none !important;
   border: none;
+  -webkit-appearance: none;
   -webkit-box-shadow: inset 0px 0px 0px 2px var(--blue);
   -moz-box-shadow: inset 0px 0px 0px 2px var(--blue);
   box-shadow: inset 0px 0px 0px 2px var(--blue);
@@ -176,7 +186,7 @@ input:focus {
 
 .berate {
   position: absolute;
-  font-family: "Akkurat-Mono";
+  font-family: "Akkurat-Mono", "IBM-Mono", "Courier New", Courier, monospace;
   font-size: 2em;
   color: var(--red);
 }
@@ -216,7 +226,7 @@ input:focus {
   border-radius: 4px;
   text-align: center;
   background-color: var(--red);
-  font-family: "Akkurat-Mono";
+  font-family: "Akkurat-Mono", "IBM-Mono", "Courier New", Courier, monospace;
   color: white;
   font-size: 1.6em;
   cursor: pointer;

@@ -305,7 +305,7 @@ function homePage() {
     let mistakes = document.getElementById("mistakes")
     mistakes!.innerHTML = mistakeTracker.toString();
 
-    wpmElement?.innerHTML = 0;
+    wpmElement!.innerHTML = "0";
 }
 
 window.onload = function() {
