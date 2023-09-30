@@ -238,3 +238,86 @@ input:focus {
   .typed{
     color:black;
   }
+
+
+
+
+  #about {
+    @media (orientation: portrait) {
+      font-size: 2em;
+      line-height: 6vw;
+      padding: 1.5vw;
+    }
+    padding: .5vw;
+    font-size: 1.5em;
+    line-height: 2vw;
+    text-align: center;
+    font-family: "Akkurat-Mono";
+    position: absolute;
+    top: 10vh;
+    right: 5vw;
+    color: black;
+    cursor: pointer;
+    z-index: 2;
+
+    background-color: var(--darkred);
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+  }
+
+  #title{
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  #about-modal {
+    @media (orientation: portrait) {
+      width: 75vw;
+      font-size: 2em;
+      padding: 10vw;
+      padding-top: 15vw;
+      padding-bottom: 15vw;
+      top: 10vh;
+    }
+    z-index: 1;
+    position: absolute;
+    color: white;
+    background-color: black;
+    top: 10vh;
+    left: 0; 
+    right: 0; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 30vw;
+    font-family: "Akkurat-Mono";
+    font-size: 1em;
+    padding: 10vw;
+    
+    #x {
+      @media (orientation: portrait) {
+        font-size: 1em;
+        transform: translate(2vh, -5vh);
+      }
+      cursor: pointer;
+      float: right;
+      // font-size: 1em;
+      transform: translate(4vw, -6vw);
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+    }
+  }
+
+  #shade {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    left:0;
+    background-color: black;
+    opacity: 60%;
+  }
+  

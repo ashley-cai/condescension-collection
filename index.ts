@@ -44,6 +44,8 @@ function startGame() {
     intro!.style.display = "none"
     let game = document.getElementById("game-page")
     game!.style.display = "block"
+    let about = document.getElementById("about")
+    about!.style.display = "none"
     initializePhrase()
 }
 
@@ -302,10 +304,33 @@ function homePage() {
     mistakeTracker = 0;
     letterCounter = 0;
 
+    usedPhrases = [0];
+
     let mistakes = document.getElementById("mistakes")
     mistakes!.innerHTML = mistakeTracker.toString();
 
     wpmElement!.innerHTML = "0";
+
+    let restartButton = document.getElementById("restart-button")!
+    restartButton.style.display = "none"
+
+    let about = document.getElementById("about")
+    about!.style.display = "block"
+}
+
+function aboutButton() {
+    let abtModal = document.getElementById('about-modal')
+    abtModal.style.display="block"
+    let shade = document.getElementById('shade')
+    shade.style.display="block"
+}
+
+function closeAboutModal() {
+    let abtModal = document.getElementById('about-modal')
+    abtModal.style.display="none"
+    let shade = document.getElementById('shade')
+    shade.style.display="none"
+
 }
 
 window.onload = function() {

@@ -7,6 +7,8 @@
     
     <script>var exports = {};</script>
 
+    <div id="about" onclick="javascript:aboutButton()">ABOUT</div>
+
     <div class="intro-page" id="intro-page">
       <div class="intro-container">
           <img class="title" src = "assets/title.svg"/>
@@ -17,6 +19,16 @@
               START
           </div>
       </div>
+    </div>
+
+    <div id="about-modal">
+      <div id="x" onclick="javascript:closeAboutModal()">X</div>
+      <p id="title">✶ Condescension Collection ✶</p>
+      I built this capsule game to emulate of the frustration of being treated with condescension as a non-native English speaker.
+      <br>
+      I grew up watching white people respond to my parents’ broken English with tension: wide eyes frozen in trapped patience, smile widened in condescension, a voice reserved for speaking to children. 
+      <br>
+      Sometimes, it’s difficult to resist perpetuating the same.
     </div>
 
     <div id="game-page" class="game-page">
@@ -43,6 +55,8 @@
         RESTART
     </div>
     </div>
+
+    <div id="shade"></div>
 
     <script src="index.js"></script>
   </body>
