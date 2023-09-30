@@ -93,9 +93,8 @@ function initializePhrase() {
     //reset user input
     userTypedLetter = []
 
-    //picks reference sentence
-    let referenceSentence = document.getElementById("reference-sentence")!
-    referenceSentence.innerHTML = phrase;
+    //sets reference sentence
+    constructSentence(0);
 
     //creates text boxes
     let typeSentence = document.getElementById("type-sentence")!
@@ -113,8 +112,22 @@ function initializePhrase() {
     input!.focus();
 }
 
+function constructSentence(count: number) {
+    let sentence = ""
+    for (let i = 0; i < wordCheckerLetter.length; i++) {
+        if (i<count) {
+            sentence += "<span class='typed'>"+wordCheckerLetter[i]+"</span>"
+        } else {
+            sentence += wordCheckerLetter[i]
+        }
+    }
+    let referenceSentence = document.getElementById("reference-sentence")!
+    referenceSentence.innerHTML = sentence;
+}
+
 function typeCheck(current: HTMLElement, next: string) {
     letterCounter++;
+    constructSentence(Number(current.id))
     userTypedLetter = userTypedLetter.concat(current.value);
     mistakeCheck(current);
     autotab(current, next);
@@ -256,6 +269,7 @@ const wpmInterval = setInterval(
 function endGame() {
 
     let referenceSentence = document.getElementById("reference-sentence")!
+    referenceSentence.style.color="black";
     referenceSentence.innerHTML = `Your final WPM was: <i>` + wpm + ` WPM</i>. <br> The average adult typing speed is <i>50 WPM.</i><br>`;
     if (wpm < 50) {
         referenceSentence.innerHTML += `<br> If you didn't realize, that means you are <i>` + (50 - wpm) + ` WPM</i> slower than average.`
@@ -278,13 +292,20 @@ function homePage() {
     game!.style.display = "none"
     let berateContainer = document.getElementById("berate-container");
     berateContainer?.innerHTML = ""
+    let referenceSentence = document.getElementById("reference-sentence")!
+    referenceSentence.style.color = "#CACACA"
     let typeSentence = document.getElementById("type-sentence")!
     typeSentence.style.display = "block"
+
     countTracker = 0;
     timeTracker = 0;
     mistakeTracker = 0;
-
     letterCounter = 0;
+
+    let mistakes = document.getElementById("mistakes")
+    mistakes!.innerHTML = mistakeTracker.toString();
+
+    wpmElement?.innerHTML = 0;
 }
 
 window.onload = function() {
