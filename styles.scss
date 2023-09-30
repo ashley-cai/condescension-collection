@@ -73,7 +73,6 @@
 .game-page {
     display: none;
     height: 100vh;
-    background-color: white;
 }
 
 .game-container{
@@ -86,7 +85,6 @@
     padding-top: 12vh;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .game-header-container {
@@ -156,6 +154,8 @@
     text-transform: uppercase;
     caret-color: transparent;
     margin: .75vh;
+    position: relative;
+    z-index: 10;
 }
 
 input:focus { 

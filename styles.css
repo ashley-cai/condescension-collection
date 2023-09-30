@@ -74,7 +74,6 @@
 .game-page {
   display: none;
   height: 100vh;
-  background-color: white;
 }
 
 .game-container {
@@ -157,6 +156,8 @@
   text-transform: uppercase;
   caret-color: transparent;
   margin: 0.75vh;
+  position: relative;
+  z-index: 10;
 }
 @media (orientation: portrait) {
   .letter {
