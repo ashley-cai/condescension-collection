@@ -17,7 +17,25 @@ let phrases: string[] = [
 "WHOLE NINE YARDS",
 "FIT AS A FIDDLE",
 "ON CLOUD NINE",
-"SPEAK OF THE DEVIL"];
+"SPEAK OF THE DEVIL",
+"COLD SHOULDER",
+"BIGGER FISH TO FRY",
+"CUTTING CORNERS",
+"EASY DOES IT",
+"HIT THE HAY",
+"FINAL STRAW",
+"INSULT TO INJURY",
+"SKIN OF YOUR TEETH",
+"DROP OF A HAT",
+"SILVER LINING",
+"ONCE IN A BLUE MOON",
+"ELEPHANT IN THE ROOM",
+"SIT TIGHT",
+"GO COLD TURKEY",
+"BLOW OFF STEAM",
+"CUT TO THE CHASE",
+"THICK AND THIN",
+"ARM AND A LEG"];
 
 let usedPhrases: number[] = [0];
 
@@ -114,6 +132,7 @@ function initializePhrase() {
     input!.focus();
 }
 
+//Sets the reference sentence, implements the grayed out function
 function constructSentence(count: number) {
     let sentence = ""
     for (let i = 0; i < wordCheckerLetter.length; i++) {
@@ -127,6 +146,7 @@ function constructSentence(count: number) {
     referenceSentence.innerHTML = sentence;
 }
 
+//function called every time there is user input
 function typeCheck(current: HTMLElement, next: string) {
     letterCounter++;
     constructSentence(Number(current.id))
@@ -135,6 +155,7 @@ function typeCheck(current: HTMLElement, next: string) {
     autotab(current, next);
 }
 
+//check for mistakes, adds to mistake tracker and berates when wrong
 function mistakeCheck(current: HTMLElement) {
     let i = Number(current.id) - 1
     if (userTypedLetter[i].toUpperCase() != wordCheckerLetter[i]) {
@@ -148,6 +169,7 @@ function mistakeCheck(current: HTMLElement) {
     mistakes!.innerHTML = mistakeTracker.toString();
 }
 
+//automatically moves user to the next input box
 function autotab(current: HTMLElement, next: string)
 {
     if (current.getAttribute && current.value.length==current.getAttribute("maxlength")) 
@@ -168,6 +190,7 @@ function autotab(current: HTMLElement, next: string)
 
 //MESSING WITH KEYBINDINGS
 
+//mixes keybindings, scaling up as it goes
 function mixKeyBindings(count: number){
     
     const inputElements = document.getElementsByClassName('letter'); //gets the text boxes for the current sentence
@@ -224,6 +247,7 @@ function berate(wordMistake: string) {
     }, 1000);
 }
 
+//gets coordinates outside of the main div for the verbal berating
 function getRandomCoordinatesOutsideDiv(divId: string) {
     // Get the dimensions of the div
     const div = document.getElementById(divId);
@@ -249,7 +273,7 @@ function getRandomCoordinatesOutsideDiv(divId: string) {
     return { x, y };
   }
 
-
+//makes the berations disappear on hover
 function vanish(current: HTMLElement) {
     current.classList.remove('visible');
     current.classList.add('hidden');
@@ -259,6 +283,7 @@ function vanish(current: HTMLElement) {
 let wpmElement = document.getElementById("wpm");
 let wpm = 0;
 
+//every 3 seconds, refresh
 const wpmInterval = setInterval(
     function() {
         wpm = Math.floor((letterCounter/5)*20)
@@ -287,6 +312,7 @@ function endGame() {
 
 }
 
+//restart button
 function homePage() {
     let intro = document.getElementById("intro-page")
     intro!.style.display = "block" 
@@ -318,6 +344,7 @@ function homePage() {
     about!.style.display = "block"
 }
 
+//open about modal
 function aboutButton() {
     let abtModal = document.getElementById('about-modal')
     abtModal.style.display="block"
@@ -325,6 +352,7 @@ function aboutButton() {
     shade.style.display="block"
 }
 
+//close about modal
 function closeAboutModal() {
     let abtModal = document.getElementById('about-modal')
     abtModal.style.display="none"
@@ -334,7 +362,6 @@ function closeAboutModal() {
 }
 
 window.onload = function() {
-    initializePhrase();
   };
 
   

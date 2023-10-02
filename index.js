@@ -17,7 +17,25 @@ let phrases = [
     "WHOLE NINE YARDS",
     "FIT AS A FIDDLE",
     "ON CLOUD NINE",
-    "SPEAK OF THE DEVIL"
+    "SPEAK OF THE DEVIL",
+    "COLD SHOULDER",
+    "BIGGER FISH TO FRY",
+    "CUTTING CORNERS",
+    "EASY DOES IT",
+    "HIT THE HAY",
+    "FINAL STRAW",
+    "INSULT TO INJURY",
+    "SKIN OF YOUR TEETH",
+    "DROP OF A HAT",
+    "SILVER LINING",
+    "ONCE IN A BLUE MOON",
+    "ELEPHANT IN THE ROOM",
+    "SIT TIGHT",
+    "GO COLD TURKEY",
+    "BLOW OFF STEAM",
+    "CUT TO THE CHASE",
+    "THICK AND THIN",
+    "ARM AND A LEG"
 ];
 let usedPhrases = [0];
 let wordCheckerInt = [];
@@ -99,6 +117,7 @@ function initializePhrase() {
     var input = document.getElementById('1');
     input.focus();
 }
+//Sets the reference sentence, implements the grayed out function
 function constructSentence(count) {
     let sentence = "";
     for (let i = 0; i < wordCheckerLetter.length; i++) {
@@ -112,6 +131,7 @@ function constructSentence(count) {
     let referenceSentence = document.getElementById("reference-sentence");
     referenceSentence.innerHTML = sentence;
 }
+//function called every time there is user input
 function typeCheck(current, next) {
     letterCounter++;
     constructSentence(Number(current.id));
@@ -119,6 +139,7 @@ function typeCheck(current, next) {
     mistakeCheck(current);
     autotab(current, next);
 }
+//check for mistakes, adds to mistake tracker and berates when wrong
 function mistakeCheck(current) {
     let i = Number(current.id) - 1;
     if (userTypedLetter[i].toUpperCase() != wordCheckerLetter[i]) {
@@ -131,6 +152,7 @@ function mistakeCheck(current) {
     let mistakes = document.getElementById("mistakes");
     mistakes.innerHTML = mistakeTracker.toString();
 }
+//automatically moves user to the next input box
 function autotab(current, next) {
     if (current.getAttribute && current.value.length == current.getAttribute("maxlength")) {
         current.disabled = true;
@@ -148,6 +170,7 @@ function autotab(current, next) {
     }
 }
 //MESSING WITH KEYBINDINGS
+//mixes keybindings, scaling up as it goes
 function mixKeyBindings(count) {
     const inputElements = document.getElementsByClassName('letter'); //gets the text boxes for the current sentence
     let mixedLetters = [" "];
@@ -197,6 +220,7 @@ function berate(wordMistake) {
         berateContainer === null || berateContainer === void 0 ? void 0 : berateContainer.innerHTML += ("<div class='disappearingText berate' onmouseover='vanish(this)' style='transform: translate(" + coords.x + "px," + coords.y + "px)'>" + wordMistake + "???</div>");
     }, 1000);
 }
+//gets coordinates outside of the main div for the verbal berating
 function getRandomCoordinatesOutsideDiv(divId) {
     // Get the dimensions of the div
     const div = document.getElementById(divId);
@@ -216,6 +240,7 @@ function getRandomCoordinatesOutsideDiv(divId) {
     }
     return { x, y };
 }
+//makes the berations disappear on hover
 function vanish(current) {
     current.classList.remove('visible');
     current.classList.add('hidden');
@@ -223,6 +248,7 @@ function vanish(current) {
 //WPM calculator
 let wpmElement = document.getElementById("wpm");
 let wpm = 0;
+//every 3 seconds, refresh
 const wpmInterval = setInterval(function () {
     wpm = Math.floor((letterCounter / 5) * 20);
     wpmElement === null || wpmElement === void 0 ? void 0 : wpmElement.innerHTML = wpm;
@@ -242,6 +268,7 @@ function endGame() {
     restartButton.style.display = "flex";
     clearInterval(wpmInterval);
 }
+//restart button
 function homePage() {
     let intro = document.getElementById("intro-page");
     intro.style.display = "block";
@@ -266,12 +293,14 @@ function homePage() {
     let about = document.getElementById("about");
     about.style.display = "block";
 }
+//open about modal
 function aboutButton() {
     let abtModal = document.getElementById('about-modal');
     abtModal.style.display = "block";
     let shade = document.getElementById('shade');
     shade.style.display = "block";
 }
+//close about modal
 function closeAboutModal() {
     let abtModal = document.getElementById('about-modal');
     abtModal.style.display = "none";
@@ -279,5 +308,4 @@ function closeAboutModal() {
     shade.style.display = "none";
 }
 window.onload = function () {
-    initializePhrase();
 };
